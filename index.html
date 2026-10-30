@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INDIGO Triage Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="tour.css">
+<style>
+  [data-rerun] { display: none !important; }
+  .topbar { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .public-tag { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#/">AI triage assistant</a>
+  <div class="top-actions">
+    <span class="public-tag">Team INDIGO · public demo</span>
+    <button type="button" class="btn switch" id="demo-toggle" role="switch" aria-checked="false" data-tour="demo-toggle" hidden>
+      <span class="switch-track" aria-hidden="true"><span class="switch-knob"></span></span>
+      Take the guided tour
+    </button>
+    <button type="button" class="btn btn-primary" id="simulate" data-tour="simulate" title="Replays a run our pipeline recorded, at its real timings">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      Simulate incoming alert</button>
+  </div>
+</header>
+<div id="note" class="note" hidden></div>
+<main id="app" class="page" aria-live="polite"><p class="muted">Loading 298 alerts…</p></main>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script src="shim.js" charset="utf-8"></script>
+<script src="tour.js" charset="utf-8"></script>
+<script src="app.js" charset="utf-8"></script>
+</body>
+</html>

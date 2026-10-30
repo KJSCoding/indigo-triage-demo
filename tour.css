@@ -1,0 +1,32 @@
+/* Guided walkthrough overlay. Everything is prefixed tour-; tokens come from app.css. */
+
+/* The root never blocks the page: only the card takes pointer events. */
+.tour-root { position: fixed; inset: 0; z-index: 100; pointer-events: none; }
+
+/* Spotlight: a rounded box whose huge shadow dims everything else. */
+.tour-spot { position: absolute; border-radius: 10px; pointer-events: none; opacity: 0;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent), 0 0 0 9999px rgba(24, 24, 27, .55); }
+/* No target: a zero-size box at the center still dims the whole viewport, without a ring. */
+.tour-spot-none { border-radius: 0; box-shadow: 0 0 0 9999px rgba(24, 24, 27, .55); }
+.tour-on .tour-spot { opacity: 1; transition: left .28s ease, top .28s ease, width .28s ease, height .28s ease, opacity .2s ease; }
+
+/* Card */
+.tour-card { position: absolute; width: min(380px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--line); box-shadow: 0 12px 32px rgba(0, 0, 0, .22); pointer-events: auto; opacity: 0; }
+.tour-on .tour-card { opacity: 1; transition: left .28s ease, top .28s ease, opacity .2s ease; }
+/* While the page scrolls, follow the target instantly instead of trailing it. */
+.tour-on.tour-snap .tour-spot, .tour-on.tour-snap .tour-card { transition: opacity .2s ease; }
+.tour-progress { height: 3px; background: var(--line-soft); }
+.tour-progress span { display: block; height: 100%; background: var(--accent); }
+.tour-inner { padding: 14px 16px 12px; }
+.tour-count { font-size: 12px; color: var(--muted); }
+.tour-title { margin: 4px 0 0; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+.tour-body { margin: 6px 0 14px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+.tour-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.tour-nav { display: flex; gap: 8px; margin-left: auto; }
+.tour-skip { min-height: 34px; padding: 0 4px; border: 0; background: none; color: var(--muted); font-size: 13px; font-weight: 500; }
+.tour-skip:hover { color: var(--ink); text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tour-root * { transition: none !important; }
+}
